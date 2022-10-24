@@ -110,7 +110,6 @@ class FileManagerViewController: UIViewController {
 
     @objc func barButtonItemAddImageAction() {
 
-
         self.present(self.imagePicker, animated: true)
 
     }
@@ -188,6 +187,7 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
 
             self.fileManagerService?.createFile(image: pickedImage)
             self.dismiss(animated: true)
+            self.modelFileManager = self.fileManagerService?.contentsOfDirectory() ?? []
             self.tableView.reloadData()
         }
     }

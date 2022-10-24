@@ -105,12 +105,7 @@ class FileManagerService: FileManagerServiceProtocol {
 
         let url = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/\(Int.random(in: 112332342...234342423))" + "_image"
             FileManager.default.createFile(atPath: url, contents: data as Data)
-
-
-
-
-
-       
+   
 
     }
 
