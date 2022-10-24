@@ -11,20 +11,55 @@ class FileManagerViewController: UIViewController {
 
     var fileManagerService: FileManagerServiceProtocol?
 
+    var modelFileManager: [ModelFileManager] = []
+
+
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FileManagerTableViewCell.self, forCellReuseIdentifier: FileManagerTableViewCell.name)
+
         return tableView
     }()
 
+    private lazy var barButtonItemAddFolder: UIBarButtonItem = {
+        var barButtonItemAddFolder = UIBarButtonItem(image: UIImage(systemName: "folder.fill.badge.plus"), style: .plain, target: self, action: #selector(barButtonItemAddFolderAction))
+        return barButtonItemAddFolder
+    }()
+
+    private lazy var imagePicker: UIImagePickerController = {
+        var imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        
+
+
+        return imagePicker
+    }()
+
+
+
+    private lazy var barButtonItemAddImage: UIBarButtonItem = {
+        var barButtonItemAddImage = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(barButtonItemAddImageAction))
+        return barButtonItemAddImage
+    }()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = "Documents"
+
+        self.modelFileManager = self.fileManagerService?.contentsOfDirectory() ?? []
+
+        self.imagePicker.delegate = self
+
+        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+
         self.view.addSubview(self.tableView)
 
-
+        self.navigationItem.setRightBarButtonItems([barButtonItemAddImage, barButtonItemAddFolder], animated: true)
 
         NSLayoutConstraint.activate([
             self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -33,29 +68,130 @@ class FileManagerViewController: UIViewController {
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+
+
+    @objc func barButtonItemAddFolderAction() {
+        let alert = UIAlertController(title: "Создать новую папку", message: nil, preferredStyle: .alert)
+
+        var textFieldName: UITextField?
+        
+        alert.addTextField { textFieldNameNewFolder in
+            textFieldNameNewFolder.placeholder = "Имя папки"
+            textFieldName = textFieldNameNewFolder
+            textFieldName?.text = "NewFolder"
+
+        }
+
+        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(actionCancel)
+
+        let actionCreate = UIAlertAction(title: "Создать", style: .default) { _ in
+
+            self.fileManagerService?.createDirectory(nameFolder:  textFieldName?.text ?? "NewFolder", completion: { error in
+
+                if let error {
+                    let alert = UIAlertController()
+                    let alertAction = UIAlertAction(title: error, style: .default)
+                    alert.addAction(alertAction)
+                    self.present(alert, animated: true)
+                }
+                else {
+                    return
+                }
+            })
+            self.modelFileManager =
+            self.fileManagerService?.contentsOfDirectory() ?? []
+            self.tableView.reloadData()
+        }
+        alert.addAction(actionCreate)
+        self.present(alert, animated: true)
+
+    }
+
+    @objc func barButtonItemAddImageAction() {
+
+
+        self.present(self.imagePicker, animated: true)
+
+    }
 }
 
 extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.fileManagerService?.contentsOfDirectory().count ?? 0
+        return self.modelFileManager.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        let nameDocuments = self.modelFileManager[indexPath.row].name
+        let type = self.modelFileManager[indexPath.row].type
+
         let cell = tableView.dequeueReusableCell(withIdentifier: FileManagerTableViewCell.name, for: indexPath) as! FileManagerTableViewCell
 
-        cell.setupInfoTableViewCell(self.fileManagerService?.contentsOfDirectory()[indexPath.row].name ?? "пусто")
+        cell.setupInfoTableViewCell(nameDocuments)
 
-        if self.fileManagerService?.contentsOfDirectory()[indexPath.row].type == .folder {
+        if type == .folder {
             cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+
+        else {
+            cell.accessoryType = .none
+            return cell
+        }
+    }
+
+
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if self.modelFileManager[indexPath.row].type == .folder {
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .white
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
         
-        return cell
+        else {
+
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let urlDeleteString = String(describing: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]) + (self.modelFileManager[indexPath.row].name)
+
+            let alert = UIAlertController(title: "Удалить?", message: nil , preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: "да", style: .destructive) {_ in
+                self.fileManagerService?.removeContent (url: urlDeleteString, completion: { error in
+                })
+                self.modelFileManager = self.fileManagerService?.contentsOfDirectory() ?? []
+                self.tableView.reloadData()
+
+            }
+            alert.addAction(actionOk)
+            let actionCancel = UIAlertAction(title: "нет", style: .cancel)
+            alert.addAction(actionCancel)
+            self.present(alert, animated: true)
+    }
     }
 }
 
+
+
+extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+
+            self.fileManagerService?.createFile(image: pickedImage)
+            self.dismiss(animated: true)
+            self.tableView.reloadData()
+        }
+    }
+}
 
 
 

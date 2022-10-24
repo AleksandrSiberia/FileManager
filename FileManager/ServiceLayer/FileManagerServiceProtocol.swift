@@ -6,12 +6,12 @@
 //
 
 import Foundation
-
+import UIKit
 
 protocol FileManagerServiceProtocol {
 
     func contentsOfDirectory() -> [ModelFileManager]
-    func createDirectory()
-    func createFile()
-    func removeContent()
+    func createDirectory(nameFolder: String, completion: (String?) -> Void)
+    func createFile(image: UIImage)
+    func removeContent(url: String, completion: (String?) -> Void)
 }

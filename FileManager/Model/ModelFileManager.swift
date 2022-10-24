@@ -16,5 +16,5 @@ enum TypeModelFileManager {
 struct ModelFileManager {
     var type: TypeModelFileManager
     var name: String
-    var url: String
+  
 }
