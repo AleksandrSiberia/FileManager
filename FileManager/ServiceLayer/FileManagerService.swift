@@ -122,22 +122,19 @@ class FileManagerService: FileManagerServiceProtocol {
 
         let data: NSData = image.pngData()! as NSData
 
-        let url = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/\(Int.random(in: 112332342...234342423))" + "_image"
+        let url = urlDocumentDirectoryString + "/\(Int.random(in: 112332342...234342423))" + "_image"
+
             FileManager.default.createFile(atPath: url, contents: data as Data)
-   
-
     }
-
 
 
 
     
     func removeContent(url: String, completion: (String?) -> Void) {
 
-        
 
                     do {
-                        try FileManager.default.removeItem(at: URL(string: url)!)
+                        try FileManager.default.removeItem(at: URL(string: String(describing: urlDocumentDirectoryURL) + url)!)
                     }
                     catch {
                         completion(error.localizedDescription)
