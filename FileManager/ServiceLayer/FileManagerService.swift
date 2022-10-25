@@ -13,16 +13,32 @@ import UIKit
 class FileManagerService: FileManagerServiceProtocol {
 
 
+    
 
-    let urlDocumentDirectoryString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    var urlDocumentDirectoryString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 
-    let urlDocumentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-
+    var urlDocumentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
 
-    func contentsOfDirectory() -> [ModelFileManager] {
 
+
+    func contentsOfDirectory(nameNewDirectory: String, completionURL: (URL, String) -> Void)  -> [ModelFileManager] {
+        print("nameNewDirectory", nameNewDirectory)
+      
+
+        if nameNewDirectory != "Documents" {
+            print("no doc")
+
+
+            let urlDocumentDirectoryURLNew = URL(string: String(describing: urlDocumentDirectoryURL) + "\(nameNewDirectory)")!
+            self.urlDocumentDirectoryURL = urlDocumentDirectoryURLNew
+            print("url", urlDocumentDirectoryURL)
+
+            self.urlDocumentDirectoryString += "/" + nameNewDirectory
+            print("string", urlDocumentDirectoryString)
+
+        }
+        completionURL(self.urlDocumentDirectoryURL, self.urlDocumentDirectoryString)
 
         var foldersNames: [String] = []
 
@@ -51,11 +67,9 @@ class FileManagerService: FileManagerServiceProtocol {
             })
             foldersNames = fName
         }
-
         catch {
             print(error.localizedDescription)
         }
-
         do {
             let arrayNamesContent = try FileManager.default.contentsOfDirectory(atPath: urlDocumentDirectoryString)
             contentsNames = arrayNamesContent
@@ -63,7 +77,6 @@ class FileManagerService: FileManagerServiceProtocol {
         catch {
             print(error.localizedDescription)
         }
-
 
 
         for folder in foldersNames {
@@ -88,6 +101,8 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
 
+
+
     func createDirectory(nameFolder: String, completion: (String?) -> Void) {
         do {
             try FileManager.default.createDirectory(atPath: urlDocumentDirectoryString + "/" + nameFolder, withIntermediateDirectories: false)
@@ -99,6 +114,10 @@ class FileManagerService: FileManagerServiceProtocol {
         }
     }
 
+
+
+
+
     func createFile(image: UIImage) {
 
         let data: NSData = image.pngData()! as NSData
@@ -109,6 +128,10 @@ class FileManagerService: FileManagerServiceProtocol {
 
     }
 
+
+
+
+    
     func removeContent(url: String, completion: (String?) -> Void) {
 
         

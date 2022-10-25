@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow.init(windowScene: scene)
 
         let viewController = FileManagerAssembly.giveMeFileManagerViewController()
+        viewController.navigationItem.title = "Documents"
 
         let navController = UINavigationController(rootViewController: viewController)
 
