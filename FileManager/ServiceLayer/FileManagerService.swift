@@ -12,8 +12,6 @@ import UIKit
 
 class FileManagerService: FileManagerServiceProtocol {
 
-    
-
 
 
     var urlDocumentDirectoryString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -22,13 +20,23 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
 
+    func openFoto(nameFoto: String, completion: @escaping (UIImage) -> Void) {
 
-    func openFoto(nameFoto: String, completion: @escaping (String) -> Void) {
-        completion(String(describing: urlDocumentDirectoryURL) + nameFoto)
+        let url = String(describing: urlDocumentDirectoryURL) + nameFoto
+
+        do {
+            let data = try Data(contentsOf:  URL(string: url)!)
+            let image = UIImage(data: data)
+            completion(image!)
+        }
+        catch  {
+            print(error.localizedDescription)
+        }
+
     }
 
 
-    func contentsOfDirectory(nameNewDirectory: String, completionURL: (URL, String) -> Void)  -> [ModelFileManager] {
+    func contentsOfDirectory(nameNewDirectory: String, completionURL: @escaping (URL, String) -> Void)  -> [ModelFileManager] {
 
 
         if nameNewDirectory != "Documents" {
@@ -65,7 +73,6 @@ class FileManagerService: FileManagerServiceProtocol {
                         }
                     }
                 }
-
             })
             foldersNames = fName
         }
@@ -104,8 +111,7 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
 
-
-    func createDirectory(nameFolder: String, completion: (String?) -> Void) {
+    func createDirectory(nameFolder: String, completion: @escaping (String?) -> Void) {
         do {
             try FileManager.default.createDirectory(atPath: urlDocumentDirectoryString + "/" + nameFolder, withIntermediateDirectories: false)
         }
@@ -115,7 +121,6 @@ class FileManagerService: FileManagerServiceProtocol {
 
         }
     }
-
 
 
 
@@ -132,7 +137,7 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
     
-    func removeContent(url: String, completion: (String?) -> Void) {
+    func removeContent(url: String, completion: @escaping (String?) -> Void) {
 
 
                     do {

@@ -15,8 +15,6 @@ class FileManagerViewController: UIViewController {
 
     var nameViewController: String = ""
 
- //   var nameViewControllerTrue: String = ""
-
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -82,10 +80,6 @@ class FileManagerViewController: UIViewController {
         }
 
 
-//        if self.nameViewControllerTrue == "" {
-//            self.nameViewControllerTrue = self.nameViewController
-//        }
-
         guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController)  else {
 
             self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: "", completionURL: { url, string in
@@ -108,7 +102,7 @@ class FileManagerViewController: UIViewController {
         self.tableView.reloadData()
     }
 
-
+   
 
     @objc func barButtonItemAddFolderAction() {
         let alert = UIAlertController(title: "Создать новую папку", message: nil, preferredStyle: .alert)
@@ -174,16 +168,20 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
 
         if type == .folder {
             cell.accessoryType = .disclosureIndicator
+            cell.setupMiniImage(image: UIImage(systemName: "folder")!)
             return cell
         }
 
         else {
             cell.accessoryType = .none
+            self.fileManagerService?.openFoto(nameFoto: self.modelFileManager[indexPath.row].name, completion: { image in
+                cell.setupMiniImage(image: image)
+            })
+
+
             return cell
         }
     }
-
-
 
 
 
@@ -205,28 +203,17 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else {
 
-            self.fileManagerService?.openFoto(nameFoto: self.modelFileManager[indexPath.row].name) { url in
-
-                let urlFotoString = url
-                let urlFoto = URL(string: urlFotoString)
-
-                do {
-                    let data = try Data(contentsOf: urlFoto!)
-                    let image = UIImage(data: data)
-
+            self.fileManagerService?.openFoto(nameFoto: self.modelFileManager[indexPath.row].name) { image in
 
                     let vcFoto = FotoViewController()
                     vcFoto.view.backgroundColor = .white
                     vcFoto.imageViewFoto.image = image
+
                     self.present(vcFoto, animated: true)
                 }
-                catch  {
-                    print(error.localizedDescription)
-                }
             }
-
         }
-    }
+
 
 
 

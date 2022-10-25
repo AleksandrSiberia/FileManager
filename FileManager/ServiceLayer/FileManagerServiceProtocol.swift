@@ -10,9 +10,9 @@ import UIKit
 
 protocol FileManagerServiceProtocol {
 
-    func contentsOfDirectory(nameNewDirectory: String, completionURL: (URL, String) -> Void) -> [ModelFileManager]
-    func createDirectory(nameFolder: String, completion: (String?) -> Void)
+    func contentsOfDirectory(nameNewDirectory: String, completionURL: @escaping (URL, String) -> Void) -> [ModelFileManager]
+    func createDirectory(nameFolder: String, completion: @escaping (String?) -> Void)
     func createFile(image: UIImage)
-    func removeContent(url: String, completion: (String?) -> Void)
-    func openFoto(nameFoto: String, completion: @escaping (String) -> Void)
+    func removeContent(url: String, completion: @escaping (String?) -> Void)
+    func openFoto(nameFoto: String, completion: @escaping (UIImage) -> Void)
 }

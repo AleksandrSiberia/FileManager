@@ -18,19 +18,37 @@ class FileManagerTableViewCell: UITableViewCell {
     private lazy var labelContentDocuments: UILabel = {
         var labelPlanetResident = UILabel()
         labelPlanetResident.translatesAutoresizingMaskIntoConstraints = false
-        labelPlanetResident.backgroundColor = .systemGray6
+        labelPlanetResident.backgroundColor = .white
         return labelPlanetResident
+    }()
+
+    private lazy var imageViewMiniFoto: UIImageView = {
+        var imageViewMiniFoto = UIImageView()
+        imageViewMiniFoto.translatesAutoresizingMaskIntoConstraints = false
+        imageViewMiniFoto.backgroundColor = .white
+        imageViewMiniFoto.clipsToBounds = true
+        imageViewMiniFoto.contentMode = .scaleAspectFit
+        return imageViewMiniFoto
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(labelContentDocuments)
+        self.addSubview(imageViewMiniFoto)
 
         NSLayoutConstraint.activate([
-            self.labelContentDocuments.topAnchor.constraint(equalTo: self.topAnchor),
-            self.labelContentDocuments.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.imageViewMiniFoto.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.imageViewMiniFoto.topAnchor.constraint(equalTo: self.topAnchor),
+            self.imageViewMiniFoto.heightAnchor.constraint(equalToConstant: 50),
+            self.imageViewMiniFoto.widthAnchor.constraint(equalToConstant: 50),
+            self.imageViewMiniFoto.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
+
+            self.labelContentDocuments.centerYAnchor.constraint(equalTo: self.imageViewMiniFoto.centerYAnchor),
+            self.labelContentDocuments.leadingAnchor.constraint(equalTo: self.imageViewMiniFoto.trailingAnchor, constant: 10),
             self.labelContentDocuments.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.labelContentDocuments.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.labelContentDocuments.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
         ])
     }
 
@@ -53,13 +71,16 @@ class FileManagerTableViewCell: UITableViewCell {
         self.labelContentDocuments.text = nameDocument
     }
 
+    func setupMiniImage(image: UIImage) {
+        self.imageViewMiniFoto.image = image
+    }
+
     func openView() -> Bool {
         if self.modelFileManager?.type == .folder {
             return true
         }
         return false
     }
-
 }
 
 extension FileManagerTableViewCell: NameFileManagerTableViewCell {
