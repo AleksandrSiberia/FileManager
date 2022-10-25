@@ -12,8 +12,9 @@ import UIKit
 
 class FileManagerService: FileManagerServiceProtocol {
 
-
     
+
+
 
     var urlDocumentDirectoryString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 
@@ -22,20 +23,21 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
 
+    func openFoto(nameFoto: String, completion: @escaping (String) -> Void) {
+        completion(String(describing: urlDocumentDirectoryURL) + nameFoto)
+    }
+
+
     func contentsOfDirectory(nameNewDirectory: String, completionURL: (URL, String) -> Void)  -> [ModelFileManager] {
-        print("nameNewDirectory", nameNewDirectory)
-      
+
 
         if nameNewDirectory != "Documents" {
-            print("no doc")
-
 
             let urlDocumentDirectoryURLNew = URL(string: String(describing: urlDocumentDirectoryURL) + "\(nameNewDirectory)")!
             self.urlDocumentDirectoryURL = urlDocumentDirectoryURLNew
-            print("url", urlDocumentDirectoryURL)
 
             self.urlDocumentDirectoryString += "/" + nameNewDirectory
-            print("string", urlDocumentDirectoryString)
+
 
         }
         completionURL(self.urlDocumentDirectoryURL, self.urlDocumentDirectoryString)

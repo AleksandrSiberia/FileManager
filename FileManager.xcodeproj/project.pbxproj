@@ -17,6 +17,7 @@
 		8B474A512901C1A3007DE402 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A502901C1A3007DE402 /* FileManagerService.swift */; };
 		8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */; };
 		8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */; };
+		8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5A29081B3D007DE402 /* FotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		8B474A502901C1A3007DE402 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerServiceProtocol.swift; sourceTree = "<group>"; };
 		8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerAssembly.swift; sourceTree = "<group>"; };
+		8B474A5A29081B3D007DE402 /* FotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				8B474A3A2901B98F007DE402 /* FileManagerViewController.swift */,
+				8B474A5A29081B3D007DE402 /* FotoViewController.swift */,
 				8B474A4A2901C0D3007DE402 /* FileManagerTableViewCell.swift */,
 				8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */,
 			);
@@ -185,6 +188,7 @@
 				8B474A372901B98F007DE402 /* AppDelegate.swift in Sources */,
 				8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */,
 				8B474A392901B98F007DE402 /* SceneDelegate.swift in Sources */,
+				8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */,
 				8B474A4F2901C172007DE402 /* ModelFileManager.swift in Sources */,
 				8B474A4B2901C0D3007DE402 /* FileManagerTableViewCell.swift in Sources */,
 				8B474A512901C1A3007DE402 /* FileManagerService.swift in Sources */,

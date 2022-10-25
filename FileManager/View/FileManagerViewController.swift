@@ -15,11 +15,7 @@ class FileManagerViewController: UIViewController {
 
     var nameViewController: String = ""
 
-    var nameViewControllerTrue: String = ""
-
-    var urlSelfFolderString: String?
-    var urlSelfFolderURL: URL?
-
+ //   var nameViewControllerTrue: String = ""
 
 
     private lazy var tableView: UITableView = {
@@ -58,7 +54,6 @@ class FileManagerViewController: UIViewController {
         super.viewDidLoad()
 
 
-
         self.imagePicker.delegate = self
 
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -78,21 +73,18 @@ class FileManagerViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("old", nameViewController)
-        if self.navigationItem.title != "Documents"  {
 
+        if self.navigationItem.title != "Documents"  {
 
             let newNameViewController = self.nameViewController.appending( self.navigationItem.title! + "/")
             self.nameViewController = newNameViewController
 
         }
-        print("New >>>>>>", self.nameViewController)
 
-        print("True name", self.nameViewControllerTrue)
 
-        if self.nameViewControllerTrue == "" {
-            self.nameViewControllerTrue = self.nameViewController
-        }
+//        if self.nameViewControllerTrue == "" {
+//            self.nameViewControllerTrue = self.nameViewController
+//        }
 
         guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController)  else {
 
@@ -101,7 +93,6 @@ class FileManagerViewController: UIViewController {
             self.tableView.reloadData()
             return
         }
-
         self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
         }) ?? []
         self.tableView.reloadData()
@@ -109,25 +100,8 @@ class FileManagerViewController: UIViewController {
     }
 
 
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-
-    }
-
-    override func viewWillLayoutSubviews() {
-
-    }
-
     private func reloadMyData() {
 
-        guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController) == true  else {
-            self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: "", completionURL: { url, string in
-            }) ?? []
-            self.tableView.reloadData()
-            return
-        }
         self.modelFileManager =
         self.fileManagerService?.contentsOfDirectory(nameNewDirectory: "", completionURL: { url, string in
         }) ?? []
@@ -165,20 +139,8 @@ class FileManagerViewController: UIViewController {
                     return
                 }
             })
-
             self.reloadMyData()
-//            guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController) == true  else {
-//                self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: "", completionURL: { url, string in
-//                }) ?? []
-//
-//                self.tableView.reloadData()
-//                return
-//            }
-//
-//            self.modelFileManager =
-//            self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
-//            }) ?? []
-//            self.tableView.reloadData()
+
         }
         alert.addAction(actionCreate)
         self.present(alert, animated: true)
@@ -243,11 +205,28 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else {
 
+            self.fileManagerService?.openFoto(nameFoto: self.modelFileManager[indexPath.row].name) { url in
+
+                let urlFotoString = url
+                let urlFoto = URL(string: urlFotoString)
+
+                do {
+                    let data = try Data(contentsOf: urlFoto!)
+                    let image = UIImage(data: data)
+
+
+                    let vcFoto = FotoViewController()
+                    vcFoto.view.backgroundColor = .white
+                    vcFoto.imageViewFoto.image = image
+                    self.present(vcFoto, animated: true)
+                }
+                catch  {
+                    print(error.localizedDescription)
+                }
+            }
+
         }
     }
-
-
-
 
 
 
@@ -259,13 +238,7 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
             let actionOk = UIAlertAction(title: "да", style: .destructive) {_ in
                 self.fileManagerService?.removeContent (url: urlDeleteString, completion: { error in
                 })
-
                 self.reloadMyData()
-//                self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
-//
-//                }) ?? []
-//                self.tableView.reloadData()
-
             }
             alert.addAction(actionOk)
             let actionCancel = UIAlertAction(title: "нет", style: .cancel)
@@ -288,10 +261,6 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
 
             reloadMyData()
 
-//            self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
-//
-//            }) ?? []
-//            self.tableView.reloadData()
         }
     }
 }
