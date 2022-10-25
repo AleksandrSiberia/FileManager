@@ -39,9 +39,9 @@ class FileManagerTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.imageViewMiniFoto.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.imageViewMiniFoto.topAnchor.constraint(equalTo: self.topAnchor),
-            self.imageViewMiniFoto.heightAnchor.constraint(equalToConstant: 50),
             self.imageViewMiniFoto.widthAnchor.constraint(equalToConstant: 50),
-            self.imageViewMiniFoto.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.imageViewMiniFoto.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+
 
 
             self.labelContentDocuments.centerYAnchor.constraint(equalTo: self.imageViewMiniFoto.centerYAnchor),

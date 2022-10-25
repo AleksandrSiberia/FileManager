@@ -12,7 +12,7 @@ import UIKit
 
 class FileManagerService: FileManagerServiceProtocol {
 
-
+    
 
     var urlDocumentDirectoryString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 
@@ -20,12 +20,17 @@ class FileManagerService: FileManagerServiceProtocol {
 
 
 
+
     func openFoto(nameFoto: String, completion: @escaping (UIImage) -> Void) {
 
-        let url = String(describing: urlDocumentDirectoryURL) + nameFoto
+        let urlString = String(describing: urlDocumentDirectoryURL) + nameFoto
 
+        guard let url = URL(string: urlString) else {
+
+            return
+        }
         do {
-            let data = try Data(contentsOf:  URL(string: url)!)
+            let data = try Data(contentsOf: url)
             let image = UIImage(data: data)
             completion(image!)
         }
@@ -129,7 +134,10 @@ class FileManagerService: FileManagerServiceProtocol {
 
         let data: NSData = image.pngData()! as NSData
 
-        let url = urlDocumentDirectoryString + "/\(Int.random(in: 112332342...234342423))" + "_image"
+        let timeData = String(describing: Date())
+        let formatTimeData = timeData.replacingOccurrences(of: " ", with: "")
+
+        let url = urlDocumentDirectoryString + "/\(formatTimeData)" + "_image"
 
             FileManager.default.createFile(atPath: url, contents: data as Data)
     }
@@ -139,14 +147,17 @@ class FileManagerService: FileManagerServiceProtocol {
     
     func removeContent(url: String, completion: @escaping (String?) -> Void) {
 
+        guard let url = URL(string: String(describing: urlDocumentDirectoryURL) + url) else {
+            return
+        }
 
-                    do {
-                        try FileManager.default.removeItem(at: URL(string: String(describing: urlDocumentDirectoryURL) + url)!)
-                    }
-                    catch {
-                        completion(error.localizedDescription)
-                        print(error)
-                    }
-            
+        do {
+            try FileManager.default.removeItem(at: url)
+        }
+        catch {
+            completion(error.localizedDescription)
+            print(error)
+        }
+
     }
 }

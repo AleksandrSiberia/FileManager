@@ -23,6 +23,7 @@ class FileManagerViewController: UIViewController {
         tableView.delegate = self
         tableView.register(FileManagerTableViewCell.self, forCellReuseIdentifier: FileManagerTableViewCell.name)
 
+
         return tableView
     }()
 
@@ -36,7 +37,6 @@ class FileManagerViewController: UIViewController {
     private lazy var imagePicker: UIImagePickerController = {
         var imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
-
         return imagePicker
     }()
 
@@ -121,7 +121,9 @@ class FileManagerViewController: UIViewController {
 
         let actionCreate = UIAlertAction(title: "Создать", style: .default) { _ in
 
-            self.fileManagerService?.createDirectory(nameFolder:  textFieldName?.text ?? "NewFolder", completion: { error in
+            let text = textFieldName?.text
+            let textFormat = text?.replacingOccurrences(of: " ", with: "")
+            self.fileManagerService?.createDirectory(nameFolder:  textFormat ?? "NewFolder", completion: { error in
 
                 if let error {
                     let alert = UIAlertController()
@@ -165,6 +167,7 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: FileManagerTableViewCell.name, for: indexPath) as! FileManagerTableViewCell
 
         cell.setupInfoTableViewCell(nameDocuments)
+        cell.selectionStyle = .none
 
         if type == .folder {
             cell.accessoryType = .disclosureIndicator
@@ -231,8 +234,13 @@ extension FileManagerViewController: UITableViewDelegate, UITableViewDataSource 
             let actionCancel = UIAlertAction(title: "нет", style: .cancel)
             alert.addAction(actionCancel)
             self.present(alert, animated: true)
+        }
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
     }
+
 }
 
 
