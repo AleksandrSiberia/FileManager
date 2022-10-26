@@ -261,4 +261,13 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 
+extension FileManagerViewController: SettingsViewControllerDelegate {
+
+    func inAlphabeticalOrder(isAlphabetical: Bool) {
+
+        self.tableView.reloadData()
+    }
+}
+
+
 

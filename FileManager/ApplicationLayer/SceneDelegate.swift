@@ -16,19 +16,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
 
+
+        UserDefaults.standard.set(true, forKey: "isTrusted")
+
+
         guard let scene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow.init(windowScene: scene)
 
-        let viewController = FileManagerAssembly.giveMeFileManagerViewController()
-        viewController.navigationItem.title = "Documents"
+        guard UserDefaults.standard.bool(forKey: "isTrusted") else {
 
-        let navController = UINavigationController(rootViewController: viewController)
+            let loginViewController = LoginViewController()
+            loginViewController.view.backgroundColor = .white
+            let navLoginViewController = UINavigationController.init(rootViewController: loginViewController)
+            self.window?.rootViewController = navLoginViewController
+            self.window?.makeKeyAndVisible()
+            return
+        }
 
-        viewController.view.backgroundColor = .white
+        let settingViewController = SettingsViewController()
 
-        self.window?.rootViewController = navController
+        let navSettingViewController = UINavigationController(rootViewController: settingViewController)
+        navSettingViewController.view.backgroundColor = .white
 
+
+        let fileManagerViewController = FileManagerAssembly.giveMeFileManagerViewController()
+        fileManagerViewController.view.backgroundColor = .white
+        fileManagerViewController.navigationItem.title = "Documents"
+        fileManagerViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "doc.on.doc" ), tag: 1)
+        let navFileManagerViewController = UINavigationController(rootViewController: fileManagerViewController)
+        navSettingViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "gearshape"), tag: 2)
+
+
+        let tabBarViewController = UITabBarController()
+        tabBarViewController.viewControllers = [navFileManagerViewController, navSettingViewController]
+        tabBarViewController.tabBar.backgroundColor = .white
+
+
+        self.window?.rootViewController = tabBarViewController
         self.window?.makeKeyAndVisible()
 
 

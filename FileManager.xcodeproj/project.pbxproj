@@ -18,6 +18,9 @@
 		8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */; };
 		8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */; };
 		8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5A29081B3D007DE402 /* FotoViewController.swift */; };
+		8B474A5D290913E0007DE402 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5C290913E0007DE402 /* LoginViewController.swift */; };
+		8B474A5F2909A507007DE402 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5E2909A507007DE402 /* SettingsViewController.swift */; };
+		8B474A612909AB54007DE402 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerServiceProtocol.swift; sourceTree = "<group>"; };
 		8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerAssembly.swift; sourceTree = "<group>"; };
 		8B474A5A29081B3D007DE402 /* FotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoViewController.swift; sourceTree = "<group>"; };
+		8B474A5C290913E0007DE402 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8B474A5E2909A507007DE402 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +86,10 @@
 		8B474A542901C567007DE402 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A5C290913E0007DE402 /* LoginViewController.swift */,
 				8B474A3A2901B98F007DE402 /* FileManagerViewController.swift */,
+				8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */,
+				8B474A5E2909A507007DE402 /* SettingsViewController.swift */,
 				8B474A5A29081B3D007DE402 /* FotoViewController.swift */,
 				8B474A4A2901C0D3007DE402 /* FileManagerTableViewCell.swift */,
 				8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */,
@@ -186,12 +195,15 @@
 			files = (
 				8B474A3B2901B98F007DE402 /* FileManagerViewController.swift in Sources */,
 				8B474A372901B98F007DE402 /* AppDelegate.swift in Sources */,
+				8B474A5F2909A507007DE402 /* SettingsViewController.swift in Sources */,
 				8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */,
 				8B474A392901B98F007DE402 /* SceneDelegate.swift in Sources */,
 				8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */,
+				8B474A612909AB54007DE402 /* SettingsViewControllerDelegate.swift in Sources */,
 				8B474A4F2901C172007DE402 /* ModelFileManager.swift in Sources */,
 				8B474A4B2901C0D3007DE402 /* FileManagerTableViewCell.swift in Sources */,
 				8B474A512901C1A3007DE402 /* FileManagerService.swift in Sources */,
+				8B474A5D290913E0007DE402 /* LoginViewController.swift in Sources */,
 				8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
