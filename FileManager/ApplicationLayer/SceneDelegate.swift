@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 
-        guard (KeychainSwift().get("passwordd") != nil) else {
+        guard (KeychainSwift().get("password") != nil) else {
 
             let loginViewController = LoginViewController()
             loginViewController.view.backgroundColor = .white

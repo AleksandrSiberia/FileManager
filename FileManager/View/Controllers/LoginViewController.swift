@@ -27,8 +27,8 @@ class LoginViewController: UIViewController {
         textFieldPassword.clearButtonMode = .whileEditing
         textFieldPassword.backgroundColor = .systemGray6
         textFieldPassword.layer.cornerRadius = 12
-
-
+        textFieldPassword.isSecureTextEntry = true
+        textFieldPassword.keyboardType = .namePhonePad
         return textFieldPassword
     }()
 
@@ -42,7 +42,8 @@ class LoginViewController: UIViewController {
 
         let action = UIAction { uiAction in
 
-            if self.buttonTitle != "Повторите пароль" {
+            if self.buttonTitle != "Повторите пароль", self.buttonTitle != "   Введите пароль   " {
+
                 guard (self.textFieldPassword.text?.count ?? 0) >= 4 else {
                     let alert = UIAlertController(title: nil , message: "Пароль должен быть минимум из 4 символов", preferredStyle: .alert)
 
@@ -73,7 +74,25 @@ class LoginViewController: UIViewController {
                     self.buttonTitle = "Создать пароль"
                     return
                 }
+
+                self.textFieldPassword.text = ""
                 self.navigationController?.pushViewController(TabBarControllerAssembly.createTabBarController(), animated: true)
+                return
+            }
+
+            if self.buttonTitle == "   Введите пароль   " {
+
+                guard KeychainSwift().get("password") == self.textFieldPassword.text else {
+                    let alert = UIAlertController(title: "Неверный пароль", message: nil, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ок", style: .cancel)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    return
+                }
+
+                self.textFieldPassword.text = ""
+                self.navigationController?.pushViewController(TabBarControllerAssembly.createTabBarController(), animated: true)
+                return
             }
         }
 
