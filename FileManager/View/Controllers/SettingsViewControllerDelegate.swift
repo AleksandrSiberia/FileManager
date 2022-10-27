@@ -8,5 +8,7 @@
 import Foundation
 
 protocol SettingsViewControllerDelegate {
+
     func inAlphabeticalOrder(isAlphabetical: Bool)
+    
 }

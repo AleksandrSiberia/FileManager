@@ -23,7 +23,6 @@
 		8B474A5F2909A507007DE402 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5E2909A507007DE402 /* SettingsViewController.swift */; };
 		8B474A612909AB54007DE402 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */; };
 		8B474A63290A6540007DE402 /* CheckerPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A62290A6540007DE402 /* CheckerPassword.swift */; };
-		8B474A65290A6594007DE402 /* CheckerPasswordProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A64290A6594007DE402 /* CheckerPasswordProtocol.swift */; };
 		8B474A68290A6C16007DE402 /* TabBarControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A67290A6C16007DE402 /* TabBarControllerAssembly.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		8B474A5E2909A507007DE402 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		8B474A62290A6540007DE402 /* CheckerPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerPassword.swift; sourceTree = "<group>"; };
-		8B474A64290A6594007DE402 /* CheckerPasswordProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerPasswordProtocol.swift; sourceTree = "<group>"; };
 		8B474A67290A6C16007DE402 /* TabBarControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +125,6 @@
 			children = (
 				8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */,
 				8B474A502901C1A3007DE402 /* FileManagerService.swift */,
-				8B474A64290A6594007DE402 /* CheckerPasswordProtocol.swift */,
 				8B474A62290A6540007DE402 /* CheckerPassword.swift */,
 			);
 			path = ServiceLayer;
@@ -305,7 +302,6 @@
 				8B474A4F2901C172007DE402 /* ModelFileManager.swift in Sources */,
 				8B474A4B2901C0D3007DE402 /* FileManagerTableViewCell.swift in Sources */,
 				8B474A512901C1A3007DE402 /* FileManagerService.swift in Sources */,
-				8B474A65290A6594007DE402 /* CheckerPasswordProtocol.swift in Sources */,
 				8B474A5D290913E0007DE402 /* LoginViewController.swift in Sources */,
 				8B474A63290A6540007DE402 /* CheckerPassword.swift in Sources */,
 				8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */,

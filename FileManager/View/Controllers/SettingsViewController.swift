@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class SettingsViewController: UIViewController {
 
@@ -35,28 +36,33 @@ class SettingsViewController: UIViewController {
 
     private lazy var switchAlphabetical: UISwitch = {
         var switchAlphabetical = UISwitch()
-        switchAlphabetical.setOn(true, animated: true)
+
+
+        if UserDefaults.standard.bool(forKey: "switchAlphabeticalOff") == true {
+            switchAlphabetical.setOn(false, animated: true)
+        }
+        if UserDefaults.standard.bool(forKey: "switchAlphabeticalOff") == false {
+            switchAlphabetical.setOn(true, animated: true)
+        }
 
         let action = UIAction { action in
             if self.switchAlphabetical.isOn {
-                print("on")
+                UserDefaults.standard.set(false, forKey: "switchAlphabeticalOff")
                    }
             else {
-                print("off")
+                UserDefaults.standard.set(true, forKey: "switchAlphabeticalOff")
             }
         }
-
         switchAlphabetical.addAction(action, for: .touchUpInside)
         return switchAlphabetical
     }()
+
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "Настройки"
-
-
         self.view.addSubview(stackView)
         [labelAlphabetical, switchAlphabetical, buttonChangePassword].forEach { self.stackView.addArrangedSubview($0)}
 

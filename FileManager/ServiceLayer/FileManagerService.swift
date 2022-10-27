@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import KeychainSwift
 
 
 
@@ -108,9 +109,21 @@ class FileManagerService: FileManagerServiceProtocol {
             if name != ".DS_Store" {
                 modelFileManager.append(ModelFileManager(type: .file, name: name))
             }
-
         }
-        return modelFileManager
+
+
+
+        if UserDefaults.standard.bool(forKey: "switchAlphabeticalOff") == false {
+            let array = modelFileManager.sorted { $0.name < $1.name }
+            modelFileManager = array
+            return modelFileManager
+        }
+
+        else {
+            let array = modelFileManager.sorted { $0.name > $1.name }
+            modelFileManager = array
+            return modelFileManager
+        }
     }
 
 

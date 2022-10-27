@@ -72,13 +72,12 @@ class FileManagerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.navigationItem.title != "Documents"  {
 
+
+        if self.navigationItem.title != "Documents"  {
             let newNameViewController = self.nameViewController.appending( self.navigationItem.title! + "/")
             self.nameViewController = newNameViewController
-
         }
-
 
         guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController)  else {
 
@@ -89,6 +88,7 @@ class FileManagerViewController: UIViewController {
         }
         self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
         }) ?? []
+
         self.tableView.reloadData()
 
     }
@@ -265,7 +265,16 @@ extension FileManagerViewController: SettingsViewControllerDelegate {
 
     func inAlphabeticalOrder(isAlphabetical: Bool) {
 
-        self.tableView.reloadData()
+        if isAlphabetical == true {
+
+            self.modelFileManager.sorted { $0.name > $1.name }
+            self.tableView.reloadData()
+        }
+
+        else {
+
+            self.tableView.reloadData()
+        }
     }
 }
 
