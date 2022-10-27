@@ -14,9 +14,9 @@ class SettingsViewController: UIViewController {
 
     private lazy var stackView: UIStackView = {
         var stackView = UIStackView()
-        stackView.distribution = .fillEqually
+      //  stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
         stackView.spacing = 12
         return stackView
     }()
@@ -33,8 +33,9 @@ class SettingsViewController: UIViewController {
     private lazy var buttonChangePassword: UIButton = {
         var buttonChangePassword = UIButton()
         buttonChangePassword.backgroundColor = UIColor(named: "myBlue")
-        buttonChangePassword.setTitle("  Поменять пароль", for: .normal)
+        buttonChangePassword.setTitle("  Поменять пароль  ", for: .normal)
         buttonChangePassword.layer.cornerRadius = 12
+        buttonChangePassword.translatesAutoresizingMaskIntoConstraints = false
 
         let action = UIAction { uiAction in
             let loginViewController = LoginViewController()
@@ -54,12 +55,24 @@ class SettingsViewController: UIViewController {
         buttonDeletePassword.backgroundColor = UIColor(named: "myBlue")
         buttonDeletePassword.layer.cornerRadius = 12
         buttonDeletePassword.setTitle("Удалить пароль", for: .normal)
+        buttonDeletePassword.translatesAutoresizingMaskIntoConstraints = false
 
         let action = UIAction { _ in
             print("delete")
-            KeychainSwift().delete("password"
-            )
+
+            let alert = UIAlertController(title: "   Удалить пароль   ", message: nil, preferredStyle: .alert)
+
+            let actionOk = UIAlertAction(title: "Да", style: .destructive) { _ in
+                KeychainSwift().delete("password")
+            }
+
+            let actionCancel = UIAlertAction(title: "Нет", style: .cancel)
+            alert.addAction(actionOk)
+            alert.addAction(actionCancel)
+
+            self.present(alert, animated: true)
         }
+
         buttonDeletePassword.addAction(action, for: .touchUpInside)
 
         return buttonDeletePassword
@@ -98,13 +111,27 @@ class SettingsViewController: UIViewController {
 
         self.navigationItem.title = "Настройки"
         self.view.addSubview(stackView)
-        [labelAlphabetical, switchAlphabetical, buttonChangePassword, buttonDeletePassword].forEach { self.stackView.addArrangedSubview($0)}
+        self.view.addSubview(buttonChangePassword)
+        self.view.addSubview(buttonDeletePassword)
+
+        [labelAlphabetical, switchAlphabetical].forEach { self.stackView.addArrangedSubview($0)}
 
         NSLayoutConstraint.activate([
+
             self.stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12),
-            self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:  -12)
+            self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:  -12),
+
+            self.buttonChangePassword.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 30),
+            self.buttonChangePassword.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+
+            self.buttonDeletePassword.topAnchor.constraint(equalTo: self.buttonChangePassword.bottomAnchor, constant: 5),
+            self.buttonDeletePassword.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.buttonDeletePassword.leadingAnchor.constraint(equalTo: self.buttonChangePassword.leadingAnchor),
+            self.buttonDeletePassword.trailingAnchor.constraint(equalTo: self.buttonChangePassword.trailingAnchor)
+
+
         ])
     }
 }

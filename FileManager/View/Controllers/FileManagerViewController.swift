@@ -73,6 +73,7 @@ class FileManagerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+
      //   self.navigationItem.setHidesBackButton(true, animated: true)
         self.tabBarController?.navigationItem.hidesBackButton = true
 
@@ -91,6 +92,7 @@ class FileManagerViewController: UIViewController {
         self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
         }) ?? []
 
+        reloadMyData()
         self.tableView.reloadData()
 
     }
