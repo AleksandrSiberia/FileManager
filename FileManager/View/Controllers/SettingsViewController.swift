@@ -10,6 +10,8 @@ import KeychainSwift
 
 class SettingsViewController: UIViewController {
 
+    var delegate: SettingsViewControllerDelegate!
+
     private lazy var stackView: UIStackView = {
         var stackView = UIStackView()
         stackView.distribution = .fillEqually
@@ -19,6 +21,7 @@ class SettingsViewController: UIViewController {
         return stackView
     }()
 
+
     private lazy var labelAlphabetical: UILabel = {
         var labelAlphabetical = UILabel()
         labelAlphabetical.text = "Сортировать документы по алфавиту"
@@ -26,17 +29,46 @@ class SettingsViewController: UIViewController {
         return labelAlphabetical
     }()
 
+
     private lazy var buttonChangePassword: UIButton = {
         var buttonChangePassword = UIButton()
         buttonChangePassword.backgroundColor = UIColor(named: "myBlue")
         buttonChangePassword.setTitle("  Поменять пароль", for: .normal)
         buttonChangePassword.layer.cornerRadius = 12
+
+        let action = UIAction { uiAction in
+            let loginViewController = LoginViewController()
+            loginViewController.buttonTitle = "   Создать новый пароль   "
+            loginViewController.view.backgroundColor = .white
+            self.present(loginViewController, animated: true)
+        }
+        
+        buttonChangePassword.addAction(action, for: .touchUpInside)
         return buttonChangePassword
     }()
 
+
+
+    private lazy var buttonDeletePassword: UIButton = {
+        var buttonDeletePassword = UIButton()
+        buttonDeletePassword.backgroundColor = UIColor(named: "myBlue")
+        buttonDeletePassword.layer.cornerRadius = 12
+        buttonDeletePassword.setTitle("Удалить пароль", for: .normal)
+
+        let action = UIAction { _ in
+            print("delete")
+            KeychainSwift().delete("password"
+            )
+        }
+        buttonDeletePassword.addAction(action, for: .touchUpInside)
+
+        return buttonDeletePassword
+    }()
+
+
+
     private lazy var switchAlphabetical: UISwitch = {
         var switchAlphabetical = UISwitch()
-
 
         if UserDefaults.standard.bool(forKey: "switchAlphabeticalOff") == true {
             switchAlphabetical.setOn(false, animated: true)
@@ -48,9 +80,11 @@ class SettingsViewController: UIViewController {
         let action = UIAction { action in
             if self.switchAlphabetical.isOn {
                 UserDefaults.standard.set(false, forKey: "switchAlphabeticalOff")
+                self.delegate.reloadTableView(director: self)
                    }
             else {
                 UserDefaults.standard.set(true, forKey: "switchAlphabeticalOff")
+                self.delegate.reloadTableView(director: self)
             }
         }
         switchAlphabetical.addAction(action, for: .touchUpInside)
@@ -64,18 +98,13 @@ class SettingsViewController: UIViewController {
 
         self.navigationItem.title = "Настройки"
         self.view.addSubview(stackView)
-        [labelAlphabetical, switchAlphabetical, buttonChangePassword].forEach { self.stackView.addArrangedSubview($0)}
-
+        [labelAlphabetical, switchAlphabetical, buttonChangePassword, buttonDeletePassword].forEach { self.stackView.addArrangedSubview($0)}
 
         NSLayoutConstraint.activate([
             self.stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12),
             self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:  -12)
-
         ])
-
     }
-    
-
 }

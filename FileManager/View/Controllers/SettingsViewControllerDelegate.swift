@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsViewControllerDelegate {
 
-    func inAlphabeticalOrder(isAlphabetical: Bool)
+    func reloadTableView(director: UIViewController)
     
 }

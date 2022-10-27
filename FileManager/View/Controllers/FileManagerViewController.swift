@@ -52,6 +52,7 @@ class FileManagerViewController: UIViewController {
         super.viewDidLoad()
 
 
+
         self.imagePicker.delegate = self
 
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -72,7 +73,8 @@ class FileManagerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-
+     //   self.navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.navigationItem.hidesBackButton = true
 
         if self.navigationItem.title != "Documents"  {
             let newNameViewController = self.nameViewController.appending( self.navigationItem.title! + "/")
@@ -255,26 +257,16 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
             self.dismiss(animated: true)
 
             reloadMyData()
-
         }
     }
 }
 
 
+
 extension FileManagerViewController: SettingsViewControllerDelegate {
 
-    func inAlphabeticalOrder(isAlphabetical: Bool) {
-
-        if isAlphabetical == true {
-
-            self.modelFileManager.sorted { $0.name > $1.name }
-            self.tableView.reloadData()
-        }
-
-        else {
-
-            self.tableView.reloadData()
-        }
+    func reloadTableView(director: UIViewController) {
+        self.tableView.reloadData()
     }
 }
 

@@ -32,13 +32,13 @@ class LoginViewController: UIViewController {
         return textFieldPassword
     }()
 
+
+
     private lazy var buttonAuthorization: UIButton = {
         var buttonAuthorization = UIButton()
 
-
         buttonAuthorization.backgroundColor = UIColor(named: "myBlue")
         buttonAuthorization.layer.cornerRadius = 12
-                var password: String
 
         let action = UIAction { uiAction in
 
@@ -61,7 +61,6 @@ class LoginViewController: UIViewController {
                 return
             }
 
-
             if self.buttonTitle == "Повторите пароль" {
                 guard KeychainSwift().get("password") == self.textFieldPassword.text else {
 
@@ -77,6 +76,8 @@ class LoginViewController: UIViewController {
 
                 self.textFieldPassword.text = ""
                 self.navigationController?.pushViewController(TabBarControllerAssembly.createTabBarController(), animated: true)
+           //     self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true)
                 return
             }
 
@@ -95,17 +96,16 @@ class LoginViewController: UIViewController {
                 return
             }
         }
-
-
-
         buttonAuthorization.addAction(action, for: .touchUpInside)
         return buttonAuthorization
     }()
 
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+       
         self.view.addSubview(self.stackView)
         [textFieldPassword, buttonAuthorization].forEach {
             self.stackView.addArrangedSubview($0)
@@ -119,14 +119,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-
         self.buttonAuthorization.setTitle( self.buttonTitle, for: .normal)
     }
-
-    @objc func dismissAction() {
-        print("gesture")
-        self.dismiss(animated: true)
-    }
-    
-
 }
