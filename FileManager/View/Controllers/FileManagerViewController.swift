@@ -52,6 +52,7 @@ class FileManagerViewController: UIViewController {
         super.viewDidLoad()
 
 
+
         self.imagePicker.delegate = self
 
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -72,13 +73,14 @@ class FileManagerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.navigationItem.title != "Documents"  {
 
+     //   self.navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.navigationItem.hidesBackButton = true
+
+        if self.navigationItem.title != "Documents"  {
             let newNameViewController = self.nameViewController.appending( self.navigationItem.title! + "/")
             self.nameViewController = newNameViewController
-
         }
-
 
         guard FileManager.default.fileExists(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] + "/" + self.nameViewController)  else {
 
@@ -89,6 +91,8 @@ class FileManagerViewController: UIViewController {
         }
         self.modelFileManager = self.fileManagerService?.contentsOfDirectory(nameNewDirectory: self.nameViewController, completionURL: { url, string in
         }) ?? []
+
+        reloadMyData()
         self.tableView.reloadData()
 
     }
@@ -255,8 +259,16 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
             self.dismiss(animated: true)
 
             reloadMyData()
-
         }
+    }
+}
+
+
+
+extension FileManagerViewController: SettingsViewControllerDelegate {
+
+    func reloadTableView(director: UIViewController) {
+        self.tableView.reloadData()
     }
 }
 

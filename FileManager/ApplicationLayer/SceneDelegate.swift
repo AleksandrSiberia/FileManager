@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -15,21 +16,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-
         guard let scene = (scene as? UIWindowScene) else { return }
-
         self.window = UIWindow.init(windowScene: scene)
 
-        let viewController = FileManagerAssembly.giveMeFileManagerViewController()
-        viewController.navigationItem.title = "Documents"
 
-        let navController = UINavigationController(rootViewController: viewController)
 
-        viewController.view.backgroundColor = .white
+        guard (KeychainSwift().get("password") != nil) else {
 
-        self.window?.rootViewController = navController
+            let loginViewController = LoginViewController()
+            loginViewController.view.backgroundColor = .white
 
+            loginViewController.buttonTitle = "   Создать пароль   "
+            let navLoginViewController = UINavigationController.init(rootViewController: loginViewController)
+            self.window?.rootViewController = navLoginViewController
+            self.window?.makeKeyAndVisible()
+
+            return
+        }
+
+        let loginViewController = LoginViewController()
+        loginViewController.view.backgroundColor = .white
+
+        loginViewController.buttonTitle = "   Введите пароль   "
+        let navLoginViewController = UINavigationController.init(rootViewController: loginViewController)
+        self.window?.rootViewController = navLoginViewController
         self.window?.makeKeyAndVisible()
+
 
 
     }

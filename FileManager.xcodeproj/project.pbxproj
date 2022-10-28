@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1380C3F3D75159C8C53F9314 /* Pods_FileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2A29D59C85C2E8EE9261B9 /* Pods_FileManager.framework */; };
 		8B474A372901B98F007DE402 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A362901B98F007DE402 /* AppDelegate.swift */; };
 		8B474A392901B98F007DE402 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A382901B98F007DE402 /* SceneDelegate.swift */; };
 		8B474A3B2901B98F007DE402 /* FileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A3A2901B98F007DE402 /* FileManagerViewController.swift */; };
@@ -18,9 +19,17 @@
 		8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */; };
 		8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */; };
 		8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5A29081B3D007DE402 /* FotoViewController.swift */; };
+		8B474A5D290913E0007DE402 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5C290913E0007DE402 /* LoginViewController.swift */; };
+		8B474A5F2909A507007DE402 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A5E2909A507007DE402 /* SettingsViewController.swift */; };
+		8B474A612909AB54007DE402 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */; };
+		8B474A63290A6540007DE402 /* CheckerPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A62290A6540007DE402 /* CheckerPassword.swift */; };
+		8B474A68290A6C16007DE402 /* TabBarControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A67290A6C16007DE402 /* TabBarControllerAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25A0013C1EA3366919FE9964 /* Pods-FileManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManager.debug.xcconfig"; path = "Target Support Files/Pods-FileManager/Pods-FileManager.debug.xcconfig"; sourceTree = "<group>"; };
+		3401B9F3D95A0B630AAEA9F8 /* Pods-FileManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManager.release.xcconfig"; path = "Target Support Files/Pods-FileManager/Pods-FileManager.release.xcconfig"; sourceTree = "<group>"; };
+		4D2A29D59C85C2E8EE9261B9 /* Pods_FileManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FileManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B474A332901B98F007DE402 /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B474A362901B98F007DE402 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B474A382901B98F007DE402 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +43,11 @@
 		8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerServiceProtocol.swift; sourceTree = "<group>"; };
 		8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerAssembly.swift; sourceTree = "<group>"; };
 		8B474A5A29081B3D007DE402 /* FotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoViewController.swift; sourceTree = "<group>"; };
+		8B474A5C290913E0007DE402 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8B474A5E2909A507007DE402 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
+		8B474A62290A6540007DE402 /* CheckerPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerPassword.swift; sourceTree = "<group>"; };
+		8B474A67290A6C16007DE402 /* TabBarControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1380C3F3D75159C8C53F9314 /* Pods_FileManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CC665E093603F1C68D2ED7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D2A29D59C85C2E8EE9261B9 /* Pods_FileManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8B474A2A2901B98F007DE402 = {
 			isa = PBXGroup;
 			children = (
 				8B474A352901B98F007DE402 /* FileManager */,
 				8B474A342901B98F007DE402 /* Products */,
+				99CB76C9586C1B27240AA9A3 /* Pods */,
+				5CC665E093603F1C68D2ED7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,10 +105,9 @@
 		8B474A542901C567007DE402 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B474A3A2901B98F007DE402 /* FileManagerViewController.swift */,
-				8B474A5A29081B3D007DE402 /* FotoViewController.swift */,
-				8B474A4A2901C0D3007DE402 /* FileManagerTableViewCell.swift */,
-				8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */,
+				8B474A66290A6BB1007DE402 /* Assembly */,
+				8B474A69290A6CD3007DE402 /* Controllers */,
+				8B474A6A290A6D38007DE402 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,6 +125,7 @@
 			children = (
 				8B474A522901C1DD007DE402 /* FileManagerServiceProtocol.swift */,
 				8B474A502901C1A3007DE402 /* FileManagerService.swift */,
+				8B474A62290A6540007DE402 /* CheckerPassword.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -114,6 +139,44 @@
 			path = ApplicationLayer;
 			sourceTree = "<group>";
 		};
+		8B474A66290A6BB1007DE402 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A562901C5F1007DE402 /* FileManagerAssembly.swift */,
+				8B474A67290A6C16007DE402 /* TabBarControllerAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		8B474A69290A6CD3007DE402 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A5C290913E0007DE402 /* LoginViewController.swift */,
+				8B474A3A2901B98F007DE402 /* FileManagerViewController.swift */,
+				8B474A602909AB54007DE402 /* SettingsViewControllerDelegate.swift */,
+				8B474A5E2909A507007DE402 /* SettingsViewController.swift */,
+				8B474A5A29081B3D007DE402 /* FotoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8B474A6A290A6D38007DE402 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A4A2901C0D3007DE402 /* FileManagerTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		99CB76C9586C1B27240AA9A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25A0013C1EA3366919FE9964 /* Pods-FileManager.debug.xcconfig */,
+				3401B9F3D95A0B630AAEA9F8 /* Pods-FileManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B474A472901B990007DE402 /* Build configuration list for PBXNativeTarget "FileManager" */;
 			buildPhases = (
+				10B73F9C1BE63C0691F97251 /* [CP] Check Pods Manifest.lock */,
 				8B474A2F2901B98F007DE402 /* Sources */,
 				8B474A302901B98F007DE402 /* Frameworks */,
 				8B474A312901B98F007DE402 /* Resources */,
+				A5D77E23E29B08ADFE84035E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,6 +244,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10B73F9C1BE63C0691F97251 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FileManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5D77E23E29B08ADFE84035E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FileManager/Pods-FileManager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FileManager/Pods-FileManager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FileManager/Pods-FileManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B474A2F2901B98F007DE402 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -186,12 +293,17 @@
 			files = (
 				8B474A3B2901B98F007DE402 /* FileManagerViewController.swift in Sources */,
 				8B474A372901B98F007DE402 /* AppDelegate.swift in Sources */,
+				8B474A5F2909A507007DE402 /* SettingsViewController.swift in Sources */,
+				8B474A68290A6C16007DE402 /* TabBarControllerAssembly.swift in Sources */,
 				8B474A532901C1DD007DE402 /* FileManagerServiceProtocol.swift in Sources */,
 				8B474A392901B98F007DE402 /* SceneDelegate.swift in Sources */,
 				8B474A5B29081B3D007DE402 /* FotoViewController.swift in Sources */,
+				8B474A612909AB54007DE402 /* SettingsViewControllerDelegate.swift in Sources */,
 				8B474A4F2901C172007DE402 /* ModelFileManager.swift in Sources */,
 				8B474A4B2901C0D3007DE402 /* FileManagerTableViewCell.swift in Sources */,
 				8B474A512901C1A3007DE402 /* FileManagerService.swift in Sources */,
+				8B474A5D290913E0007DE402 /* LoginViewController.swift in Sources */,
+				8B474A63290A6540007DE402 /* CheckerPassword.swift in Sources */,
 				8B474A572901C5F1007DE402 /* FileManagerAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +438,7 @@
 		};
 		8B474A482901B990007DE402 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25A0013C1EA3366919FE9964 /* Pods-FileManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -338,7 +451,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,6 +470,7 @@
 		};
 		8B474A492901B990007DE402 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3401B9F3D95A0B630AAEA9F8 /* Pods-FileManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -369,7 +483,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
